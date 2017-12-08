@@ -1,0 +1,36 @@
+{
+    "database": {
+        "connectionString": "mongodb://localhost:27017/taskdb-dev"
+    },
+    "server": {
+        "port": 5000,
+        "jwtSecret": "random-secret-password",
+        "jwtExpiration": "1h",
+        "routePrefix": "/api",
+        "plugins": [
+            "logger",
+            "jwt-auth",
+            "swagger"
+        ]
+    },
+    "oAuth": {
+        "tenantId": "",
+        "applicationId": "",
+        "clientId": "",
+        "clientSecret": "",
+        "identityMetadata": "https://login.microsoftonline.com/1ab41d5a-8833-4af0-82be-e3c54d03997b/.well-known/openid-configuration",
+        "responseType": "id_token",
+        "responseMode": "form_post",
+        "redirectUrl": "http://localhost:4200",
+        "allowHttpForRedirectUrl": true,
+        "validateIssuer": true,
+        "isB2C": false,
+        "issuer": null,
+        "passReqToCallback": false,
+        "useCookieInsteadOfSession": true,
+        "cookieEncryptionKeys": [{
+            "key": "SA53867TE01265568990MS34PR78WKL2",
+            "iv": "12BR530A2012"
+        }]
+    }
+}
