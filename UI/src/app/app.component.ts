@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Headers, Http, Request, RequestOptions, Response, XHRBackend } from '@angular/http';
+import { environment } from '../environments';
 
 @Component({
   selector: 'app-root',
@@ -12,15 +13,14 @@ export class AppComponent {
 
   constructor(private http: Http){}
 
-  onLogin(): void {  
-    //  window.location.href= 'http://localhost:5000/api/login'; 
-     
-    console.log('in login com'); 
-     
-    this.http.get('http://localhost:5000/api/login',null).subscribe
-      (res => { 
-         console.log('in login service', res);         
+  onLogin(): void {
+    this.http.get(environment.loginUrl,null).subscribe
+      (res => {
+         console.log('Login Service success', res);
+      },
+      err =>{
+        console.log('Login Service failed', err);
       });
-      
-    }   
+
+    }
 }

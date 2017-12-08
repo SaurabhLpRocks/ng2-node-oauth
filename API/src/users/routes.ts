@@ -6,11 +6,11 @@ import * as UserValidator from './user-validator';
 import { IDatabase } from '../database';
 import { IServerConfigurations } from '../configurations';
 import * as Bell from 'bell';
-import * as OAuthConfiguration from '../configurations/index'; 
+import * as OAuthConfiguration from '../configurations/index';
 
 export default function (server: Hapi.Server, serverConfigs: IServerConfigurations, database: IDatabase) {
-    const oauthConfiguration = OAuthConfiguration.getOAuthConfigs();  
-    
+    const oauthConfiguration = OAuthConfiguration.getOAuthConfigs();
+
     const userController = new UserController(serverConfigs, database);
     server.bind(userController);
 
@@ -38,11 +38,10 @@ export default function (server: Hapi.Server, serverConfigs: IServerConfiguratio
                 }
             }
         }
-    });  
+    });
 
     server.register(Bell);
     console.log('bell registered ');
-    // server.register(Bell, () => {
     server.auth.strategy('azure-oidc', 'bell', {
         provider: 'azuread',
         password: 'cookie_encryption_password_secure',
@@ -56,7 +55,7 @@ export default function (server: Hapi.Server, serverConfigs: IServerConfiguratio
     });
 
     console.log('auth strategy registered ');
-    
+
     server.route({
         method: '*',
         path: '/login',
